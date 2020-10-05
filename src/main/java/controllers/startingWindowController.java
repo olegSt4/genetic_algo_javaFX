@@ -27,6 +27,10 @@ public class startingWindowController extends Application {
     @FXML
     public void initialize() {
         setButtonOnClickedHandler();
+
+        addValidationToTextField(iterations, "[1-9]|[1-2][0-9]|30");
+        addValidationToTextField(citiesAmount, "[1-3][0-9]|40");
+        addValidationToTextField(mutationPercent, "[1-9]|10");
     }
 
     public static void main(String[] argv) {
@@ -44,5 +48,15 @@ public class startingWindowController extends Application {
 
     private void setButtonOnClickedHandler() {
 
+    }
+
+    private void addValidationToTextField(TextField textField, String pattern) {
+        textField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+            if (!newValue) {
+                if (!textField.getText().matches(pattern)) {
+                    textField.setText("");
+                }
+            }
+        });
     }
 }
