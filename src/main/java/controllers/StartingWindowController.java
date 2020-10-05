@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class startingWindowController extends Application {
+public class StartingWindowController extends Application {
     @FXML
     private TextField iterations;
 
