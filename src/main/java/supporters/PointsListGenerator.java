@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class PointsListGenerator {
-    private static Random random;
+    private static Random random = new Random();
 
     public static ArrayList<Point> getArrayList(int size) {
         ArrayList<Point> pointList = new ArrayList<>(size);
