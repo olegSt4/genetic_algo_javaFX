@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -7,9 +8,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChoseCityWindowController">
+<VBox pickOnBounds="false" prefHeight="420.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChoseCityWindowController">
     <children>
-        <AnchorPane fx:id="anchorPane" prefHeight="328.0" prefWidth="640.0" VBox.vgrow="ALWAYS" />
+        <AnchorPane fx:id="anchorPane" prefHeight="306.0" prefWidth="590.0" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin></AnchorPane>
         <Separator cache="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="10.0" prefWidth="200.0" />
         <Pane prefHeight="80.0" prefWidth="640.0">
             <children>
@@ -22,4 +26,3 @@
         </Pane>
     </children>
 </VBox>
-
