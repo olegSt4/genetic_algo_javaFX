@@ -8,8 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.Point;
+import supporters.PointsListGenerator;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class StartingWindowController extends Application {
     @FXML
@@ -47,7 +50,29 @@ public class StartingWindowController extends Application {
     }
 
     private void setButtonOnClickedHandler() {
+        continueButton.setOnAction(event -> {
+            if (iterations.getText().equals("") || citiesAmount.getText().equals("") || mutationPercent.getText().equals("")) return;
 
+            Stage currentStage = (Stage) continueButton.getScene().getWindow();
+            currentStage.close();
+
+            ArrayList<Point> points = PointsListGenerator.getArrayList(Integer.parseInt(citiesAmount.getText()));
+
+            FXMLLoader choseCityWinloader = new FXMLLoader();
+            choseCityWinloader.setLocation(getClass().getResource("/choseCityWindow.fxml"));
+            FXMLLoader displayWinloader = new FXMLLoader();
+            displayWinloader.setLocation(getClass().getResource("/displayWindow.fxml"));
+
+            try {
+                Parent choseCityWinParent = choseCityWinloader.load();
+                String iter = iterations.getText();
+                String mutPercent = mutationPercent.getText();
+
+                ((ChoseCityWindowController) choseCityWinloader.getController()).start(choseCityWinParent, points, iter, mutPercent, displayWinloader);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
     private void addValidationToTextField(TextField textField, String pattern) {
