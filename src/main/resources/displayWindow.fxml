@@ -17,7 +17,7 @@
          </VBox.margin>
         </AnchorPane>
         <Separator cache="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="10.0" prefWidth="200.0" />
-        <Pane prefHeight="80.0" prefWidth="640.0">
+        <Pane fx:id="pane" prefHeight="80.0" prefWidth="640.0">
             <children>
                 <Label layoutX="14.0" layoutY="23.0" prefHeight="34.0" prefWidth="87.0" text="Iteration: ">
                     <font>
