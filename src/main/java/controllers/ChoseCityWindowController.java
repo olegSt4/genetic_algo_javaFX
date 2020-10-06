@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import models.Point;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChoseCityWindowController {
@@ -22,7 +23,7 @@ public class ChoseCityWindowController {
     private String iter;
     private String mutPercent;
 
-    public void start(Parent root, List<Point> points, String iter, String mutPercent, FXMLLoader dispWinLoader) {
+    public void start(Parent root, ArrayList<Point> points, String iter, String mutPercent, FXMLLoader dispWinLoader) {
         this.dispWinLoader = dispWinLoader;
         this.iter = iter;
         this.mutPercent = mutPercent;
@@ -36,14 +37,14 @@ public class ChoseCityWindowController {
         stage.show();
     }
 
-    private void showPoints(List<Point> points) {
+    private void showPoints(ArrayList<Point> points) {
         double activeWidth = anchorPane.getPrefWidth();
         double activeHeight = anchorPane.getPrefHeight();
 
-        int id = 1;
-        for (Point point : points) {
-            Circle circle = new Circle(point.x * activeWidth, point.y * activeHeight, 5);
-            circle.setId(String.valueOf(id));
+        for (int index = 0; index < points.size(); index++) {
+            Point nextPoint = points.get(index);
+            Circle circle = new Circle(nextPoint.x * activeWidth, nextPoint.y * activeHeight, 5);
+            circle.setId(String.valueOf(index + 1));
 
             circle.setOnMouseEntered(event -> {
                 circle.setStroke(Color.BLUE);
@@ -64,9 +65,9 @@ public class ChoseCityWindowController {
                 }
             });
 
-            Label idText = new Label(String.valueOf(id++));
-            idText.setLayoutX(point.x * activeWidth + 5);
-            idText.setLayoutY(point.y * activeHeight);
+            Label idText = new Label(String.valueOf(index + 1));
+            idText.setLayoutX(nextPoint.x * activeWidth + 5);
+            idText.setLayoutY(nextPoint.y * activeHeight);
 
             anchorPane.getChildren().addAll(circle, idText);
         }
