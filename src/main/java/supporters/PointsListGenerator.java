@@ -15,7 +15,7 @@ public class PointsListGenerator {
             double x = random.nextDouble();
             double y = random.nextDouble();
 
-            Point nextPoint = new Point(x, y);
+            Point nextPoint = new Point(x, y, i + 1);
             pointList.add(nextPoint);
         }
         return pointList;

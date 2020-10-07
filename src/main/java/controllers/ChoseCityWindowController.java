@@ -41,10 +41,9 @@ public class ChoseCityWindowController {
         double activeWidth = anchorPane.getPrefWidth();
         double activeHeight = anchorPane.getPrefHeight();
 
-        for (int index = 0; index < points.size(); index++) {
-            Point nextPoint = points.get(index);
-            Circle circle = new Circle(nextPoint.x * activeWidth, nextPoint.y * activeHeight, 5);
-            circle.setId(String.valueOf(index + 1));
+        for (Point point : points) {
+            Circle circle = new Circle(point.x * activeWidth, point.y * activeHeight, 5);
+            circle.setId(String.valueOf(point.id));
 
             circle.setOnMouseEntered(event -> {
                 circle.setStroke(Color.BLUE);
@@ -65,9 +64,9 @@ public class ChoseCityWindowController {
                 }
             });
 
-            Label idText = new Label(String.valueOf(index + 1));
-            idText.setLayoutX(nextPoint.x * activeWidth + 5);
-            idText.setLayoutY(nextPoint.y * activeHeight);
+            Label idText = new Label(String.valueOf(point.id));
+            idText.setLayoutX(point.x * activeWidth + 5);
+            idText.setLayoutY(point.y * activeHeight);
 
             anchorPane.getChildren().addAll(circle, idText);
         }
