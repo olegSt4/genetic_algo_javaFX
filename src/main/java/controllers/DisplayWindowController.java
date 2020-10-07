@@ -20,9 +20,11 @@ import models.Point;
 import models.Route;
 import supporters.GeneticAlgorithm;
 
+import java.sql.Time;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class DisplayWindowController {
     @FXML
@@ -86,7 +88,7 @@ public class DisplayWindowController {
     private Task<Void> createTask(String startId, ArrayList<Point> points, String iterNum, String mutPercent) {
         return new Task<Void>() {
             @Override
-            protected Void call() throws Exception {
+            protected Void call() {
                 try {
                     displayResultsOfGeneticAlgo(startId, points, iterNum, mutPercent);
                 } catch (Exception ex) {
@@ -96,21 +98,45 @@ public class DisplayWindowController {
             }
 
             private void displayResultsOfGeneticAlgo(String startId, ArrayList<Point> points, String iterNum, String mutPercent) {
-                GeneticAlgorithm genAlg = new GeneticAlgorithm(points, Integer.parseInt(startId), Integer.parseInt(mutPercent),
+                GeneticAlgorithm genAlg = new GeneticAlgorithm(30, points, Integer.parseInt(startId), Integer.parseInt(mutPercent),
                         anchorPane.getPrefWidth(), anchorPane.getPrefHeight());
 
                 int iterations = Integer.parseInt(iterNum);
+                Route currentBestRoute = null;
                 for (int i = 0; i < iterations; i++) {
-                    boolean isLast = i == iterations - 1 ? true : false;
-
                     Route nextRoute = genAlg.nextPopulationBestRoute();
-                    String minDistance = new DecimalFormat("#.##").format(nextRoute.length);
-                    String currentIter = String.valueOf(i + 1);
-                    Platform.runLater(() -> {
-                        drawOneRoute(nextRoute, isLast);
-                        iterLabel.setText(currentIter);
-                        minDistLabel.setText(minDistance);
-                    });
+
+                    if (currentBestRoute == null || nextRoute.length < currentBestRoute.length) {
+                        currentBestRoute = nextRoute;
+
+                        boolean isLast = i == iterations - 1 ? true : false;
+                        String minDistance = new DecimalFormat("#.##").format(nextRoute.length);
+                        String currentIter = String.valueOf(i + 1);
+                        Platform.runLater(() -> {
+                            drawOneRoute(nextRoute, isLast);
+                            iterLabel.setText(currentIter);
+                            minDistLabel.setText(minDistance);
+                        });
+                    } else if (i == iterations - 1) {
+                        String minDistance = new DecimalFormat("#.##").format(nextRoute.length);
+                        String currentIter = String.valueOf(i + 1);
+                        Platform.runLater(() -> {
+                            drawOneRoute(nextRoute, true);
+                            iterLabel.setText(currentIter);
+                            minDistLabel.setText(minDistance);
+                        });
+                    } else {
+                        String currentIter = String.valueOf(i + 1);
+                        Platform.runLater(() -> {
+                            iterLabel.setText(currentIter);
+                        });
+                    }
+
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
         };
