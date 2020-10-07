@@ -100,8 +100,8 @@ public class DisplayWindowController {
                         anchorPane.getPrefWidth(), anchorPane.getPrefHeight());
 
                 int iterations = Integer.parseInt(iterNum);
-                for (int i = 0; i < 3; i++) {
-                    boolean isLast = i == 3 - 1 ? true : false;
+                for (int i = 0; i < iterations; i++) {
+                    boolean isLast = i == iterations - 1 ? true : false;
 
                     Route nextRoute = genAlg.nextPopulationBestRoute();
                     String minDistance = new DecimalFormat("#.##").format(nextRoute.length);
