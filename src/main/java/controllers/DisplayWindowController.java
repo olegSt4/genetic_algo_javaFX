@@ -7,10 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
@@ -20,7 +20,6 @@ import models.Point;
 import models.Route;
 import supporters.GeneticAlgorithm;
 
-import java.sql.Time;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
@@ -52,6 +51,7 @@ public class DisplayWindowController {
 
         Stage stage = new Stage();
         stage.setTitle("Genetic Algorithm");
+        stage.getIcons().add(new Image("/genetical.png"));
         stage.setScene(scene);
         stage.show();
     }

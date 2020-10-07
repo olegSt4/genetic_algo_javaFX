@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -13,7 +14,6 @@ import models.Point;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ChoseCityWindowController {
     @FXML
@@ -33,6 +33,7 @@ public class ChoseCityWindowController {
 
         Stage stage = new Stage();
         stage.setTitle("Genetic algorithm");
+        stage.getIcons().add(new Image("/genetical.png"));
         stage.setScene(scene);
         stage.show();
     }
