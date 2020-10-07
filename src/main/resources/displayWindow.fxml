@@ -24,7 +24,7 @@
                         <Font name="System Bold Italic" size="18.0" />
                     </font>
                 </Label>
-            <Label fx:id="iter" layoutX="101.0" layoutY="23.0" prefHeight="34.0" prefWidth="46.0" text="0">
+            <Label fx:id="iterLabel" layoutX="101.0" layoutY="23.0" prefHeight="34.0" prefWidth="46.0" text="0">
                <font>
                   <Font name="System Italic" size="18.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="minDist" layoutX="306.0" layoutY="23.0" prefHeight="34.0" prefWidth="79.0" text="0">
+            <Label fx:id="minDistLabel" layoutX="306.0" layoutY="23.0" prefHeight="34.0" prefWidth="79.0" text="0">
                <font>
                   <Font name="System Italic" size="18.0" />
                </font>
