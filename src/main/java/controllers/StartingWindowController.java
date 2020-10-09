@@ -35,6 +35,10 @@ public class StartingWindowController extends Application {
         addValidationToTextField(iterations, "[1-9]|[1-2][0-9]|30");
         addValidationToTextField(citiesAmount, "[1-3][0-9]|40");
         addValidationToTextField(mutationPercent, "[1-9]|10");
+
+        iterations.setPromptText("1...30");
+        citiesAmount.setPromptText("10...40");
+        mutationPercent.setPromptText("1...10");
     }
 
     public static void main(String[] argv) {
